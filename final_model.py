@@ -37,11 +37,13 @@ def load_image_and_preprocess(path, flip_image=False, tint_image=False):
 
     if tint_image:
         image = cv2.imread(path.strip())
-        gamma = np.random.uniform(0.4, 1.5)
-        inv_gamma = 1.0 / gamma
-        table = np.array([((i / 255.0) ** inv_gamma) * 255
-                          for i in np.arange(0, 256)]).astype("uint8")
-        image = cv2.LUT(image, table)
+        image = cv2.cvtColor(image,cv2.COLOR_RGB2HSV)
+        image = np.array(image, dtype = np.float64)
+        random_bright = .5+np.random.uniform()
+        image[:,:,2] = image[:,:,2]*random_bright
+        image[:,:,2][image[:,:,2]>255]  = 255
+        image = np.array(image, dtype = np.uint8)
+        image = cv2.cvtColor(image,cv2.COLOR_HSV2RGB)
 
     # Convert the image into mulitdimensional matrix of float values (normally int which messes up our division).
     image = np.array(image, np.float32)
@@ -52,6 +54,27 @@ def load_image_and_preprocess(path, flip_image=False, tint_image=False):
 
     # Return the modified image.
     return image
+
+def jitter_image(path, steering):
+    image = cv2.imread(path.strip())
+    rows, cols, _ = image.shape
+    transRange = 100
+    numPixels = 10
+    valPixels = 0.4
+    transX = transRange * np.random.uniform() - transRange/2
+    steering = steering + transX/transRange * 2 * valPixels
+    transY = numPixels * np.random.uniform() - numPixels/2
+    transMat = np.float32([[1, 0, transX], [0, 1, transY]])
+    image = cv2.warpAffine(image, transMat, (cols, rows))
+
+    # Convert the image into mulitdimensional matrix of float values (normally int which messes up our division).
+    image = np.array(image, np.float32)
+
+    # Crop Image
+    image = image[35:135, :]
+    image = scipy.misc.imresize(image, (66,200))
+
+    return image, steering
 
 def batch_generator(images, steering_angles, batch_size=64, augment_data=True):
     # Create an array of sample indices.
@@ -72,7 +95,7 @@ def batch_generator(images, steering_angles, batch_size=64, augment_data=True):
             batch_images.append(center_image)
             batch_steering_angles.append(center_angle)
 
-            # Add augmentation if needed. We do this because our model only runs on 
+            # Add augmentation if needed. We do this because our model only runs on
             # our center camera feed and we dont want to modify anything other than
             # the cropping and normalizing for our validation dataset since this should
             # work on raw data.
@@ -88,6 +111,11 @@ def batch_generator(images, steering_angles, batch_size=64, augment_data=True):
                 tint_angle = center_angle
                 batch_images.append(tint_image)
                 batch_steering_angles.append(tint_angle)
+
+                # Jitter the center image to make it seem like different position on road.
+                jitter_image, jitter_angle = jitter_image(images.iloc[i]['Center Image'], center_angle)
+                batch_images.append(jitter_image)
+                batch_steering_angles.append(jitter_angle)
 
                 # Load the left image and add steering constant to compensate for shift.
                 left_image = load_image_and_preprocess(images.iloc[i]['Left Image'])

@@ -26,6 +26,13 @@ columns = ['Center Image', 'Left Image', 'Right Image', 'Steering Angle', 'Throt
 
 
 
+def jitter_image():
+
+
+
+    return image
+
+
 
 def load_image_and_preprocess():
 	# PREPROCSES IMAGE
