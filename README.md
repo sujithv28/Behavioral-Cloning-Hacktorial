@@ -5,6 +5,13 @@ The [model.py](/model.py) is a template for the hacktorial and the final code is
 
 Model inspired by [Nvidia's End to End Learning Paper](https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/). Project idea, [drive.py](/drive.py), and training data from Udacity Self Driving Car Nanodegree program.
 
+For those new to deep learning or computer vision, here are some good blog posts to give you a solid basis for understanding convolutional neural networks, max pooling, etc. Included is a sample tutorial which guides you through installing Keras and guides you through creating a CNN that recognizes handwritted digits.
+
+- [A Beginners's guide to CNNs](https://adeshpande3.github.io/adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/)
+- [Inituitive Explanation of CNN](https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/)
+- [Chris Olah's blog on CNNs](http://colah.github.io/posts/2014-07-Understanding-Convolutions/)
+- Sample Handwritten Digit recognition Project using Keras tutorial [here](http://machinelearningmastery.com/handwritten-digit-recognition-using-convolutional-neural-networks-python-keras/).
+
 ## Installation
 To run the models and code make sure you [Python](https://www.python.org/downloads/) installed. 
 
@@ -47,5 +54,6 @@ To run your trained model on the simulator, open up the simulator application an
 python drive.py model.json
 ```
 
-Nvidia's End to End Model:
+## Nvidia's End to End Model:
+Our model differes only slightly as we add maxpooling layers at the end of each convolution to speed up computation.
 ![Image of Nvidia Model](/images/nVidia_model.png)
