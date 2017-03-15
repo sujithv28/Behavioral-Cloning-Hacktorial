@@ -13,5 +13,4 @@ scikit_learn==0.18.1
 gevent_socketio==0.3.6
 tensorflow==0.12.0rc0
 juptyer
-matplotlib
 pandas
