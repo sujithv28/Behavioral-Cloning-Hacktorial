@@ -21,7 +21,7 @@ wget https://www.dropbox.com/s/3cwc2atg1qorzg4/data.zip?dl=0
 unzip -a data.zip
 ```
 
-Download the simulator [here]https://github.com/udacity/self-driving-car-sim).
+Download the simulator [here](https://github.com/udacity/self-driving-car-sim).
 
 ## View the Instructional Guide Notebook
 To view the notebook run
