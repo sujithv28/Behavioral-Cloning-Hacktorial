@@ -56,6 +56,7 @@ python drive.py model.json
 
 ## Output
 ![Image of Nvidia Model](/images/self_driving.gif)
+
 GIF from [here](https://medium.com/self-driving-cars/more-udacity-self-driving-car-students-in-their-own-words-193b99ee66eb).
 
 ## Nvidia's End to End Model:
