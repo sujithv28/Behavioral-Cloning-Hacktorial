@@ -31,10 +31,7 @@ jupyter notebook
 and open [Model_Guide_and_Visualization.ipynb](/Model_Guide_and_Visualization.ipynb)
 
 ## Create training data
-To train the model run
-```
-python model.py
-```
+To create your own training data, open the simulator and select any track and the training option. All the data will be saved to the location you specify.
 
 ## Train the Model
 To train the model run
