@@ -1,10 +1,10 @@
 # Behavioral-Cloning-Hacktorial-Files
 All the files needed for the Terrapin Hackers Hacktorial on Behavioral Cloning for Self Driving Cars.
 
-The (model.py)[/model.py] is a template for the hacktorial and the final code is available to view in (final_model.py)[/final_model.py]. (drive.py)[/drive.py] contains the code needed to connect your model and the simulator.
+The [model.py](/model.py) is a template for the hacktorial and the final code is available to view in [final_model.py](/final_model.py). [drive.py](/drive.py) contains the code needed to connect your model and the simulator.
 
 ## Installation
-To run the models and code make sure you (Python)[https://www.python.org/downloads/] installed. 
+To run the models and code make sure you [Python](https://www.python.org/downloads/) installed. 
 
 Also make sure you have OpenCV installed either through pip or homebrew. You can check if this works by running and making sure nothing complains:
 ```
@@ -21,14 +21,14 @@ wget https://www.dropbox.com/s/3cwc2atg1qorzg4/data.zip?dl=0
 unzip -a data.zip
 ```
 
-Download the simulator (here)[https://github.com/udacity/self-driving-car-sim].
+Download the simulator [here]https://github.com/udacity/self-driving-car-sim).
 
 ## View the Instructional Guide Notebook
 To view the notebook run
 ```
 jupyter notebook
 ```
-and open (Model_Guide_and_Visualization.ipynb)[/Model_Guide_and_Visualization.ipynb]
+and open [Model_Guide_and_Visualization.ipynb](/Model_Guide_and_Visualization.ipynb)
 
 ## Create training data
 To train the model run
