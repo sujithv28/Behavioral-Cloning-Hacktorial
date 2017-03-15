@@ -54,6 +54,10 @@ To run your trained model on the simulator, open up the simulator application an
 python drive.py model.json
 ```
 
+## Output
+![Image of Nvidia Model](/images/self_driving.gif)
+GIF from [here](https://medium.com/self-driving-cars/more-udacity-self-driving-car-students-in-their-own-words-193b99ee66eb).
+
 ## Nvidia's End to End Model:
 Our model differes only slightly as we add maxpooling layers at the end of each convolution to speed up computation.
 ![Image of Nvidia Model](/images/nVidia_model.png)
