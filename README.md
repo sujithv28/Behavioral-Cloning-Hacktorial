@@ -1,5 +1,5 @@
 # Behavioral-Cloning-Hacktorial-Files
-All the files needed for the Terrapin Hackers Hacktorial on Behavioral Cloning for Self Driving Cars.
+All the files needed for the Terrapin Hackers Hacktorial on Behavioral Cloning (End to End Learning) for Self Driving Cars. 
 
 The [model.py](/model.py) is a template for the hacktorial and the final code is available to view in [final_model.py](/final_model.py). [drive.py](/drive.py) contains the code needed to connect your model and the simulator.
 
@@ -62,3 +62,9 @@ GIF from [here](https://medium.com/self-driving-cars/more-udacity-self-driving-c
 ## Nvidia's End to End Model:
 Our model differes only slightly as we add maxpooling layers at the end of each convolution to speed up computation.
 ![Image of Nvidia Model](/images/nVidia_model.png)
+
+## Other resources.
+Here are some other great blogs written going over their approach to the Udacity Behavorial Cloning Project and explaining the logic behind their approach.
+- [Udacity Self-Driving Car Nanodegree Project 3 — Behavioral Cloning](https://medium.com/udacity/udacity-self-driving-car-nanodegree-project-3-behavioral-cloning-446461b7c7f9#.9asxk3lyu)
+- [How Udacity’s Self-Driving Car Students Approach Behavioral Cloning](https://medium.com/udacity/how-udacitys-self-driving-car-students-approach-behavioral-cloning-5ffbfd2979e5#.q00ni6o4j)
+- [6 Different End-to-End Neural Networks](https://medium.com/self-driving-cars/6-different-end-to-end-neural-networks-f307fa2904a5#.ef5pz6i3f)
