@@ -11,6 +11,7 @@ For those new to deep learning or computer vision, here are some good blog posts
 - [Inituitive Explanation of CNN](https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/)
 - [Chris Olah's blog on CNNs](http://colah.github.io/posts/2014-07-Understanding-Convolutions/)
 - Sample Handwritten Digit recognition Project using Keras tutorial [here](http://machinelearningmastery.com/handwritten-digit-recognition-using-convolutional-neural-networks-python-keras/).
+- Great resource for computer vision tutorials that are easy to follow in Python [here](http://www.pyimagesearch.com/).
 
 ## Installation
 To run the models and code make sure you [Python](https://www.python.org/downloads/) installed. 
