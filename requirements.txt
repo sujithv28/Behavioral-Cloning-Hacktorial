@@ -7,7 +7,7 @@ pandas==0.18.0
 Pillow==3.4.2
 keras==1.1.2
 pytest==3.0.4
-h5dy
+h5py
 sklearn
 scikit_learn==0.18.1
 gevent_socketio==0.3.6
