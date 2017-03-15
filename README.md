@@ -46,3 +46,6 @@ To run your trained model on the simulator, open up the simulator application an
 ```
 python drive.py model.json
 ```
+
+Nvidia's End to End Model:
+![Image of Nvidia Model](/images/nVidia_model.png)
