@@ -3,6 +3,8 @@ All the files needed for the Terrapin Hackers Hacktorial on Behavioral Cloning f
 
 The [model.py](/model.py) is a template for the hacktorial and the final code is available to view in [final_model.py](/final_model.py). [drive.py](/drive.py) contains the code needed to connect your model and the simulator.
 
+Model inspired by [Nvidia's End to End Learning Paper](https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/). Project idea, [drive.py](/drive.py), and training data from Udacity Self Driving Car Nanodegree program.
+
 ## Installation
 To run the models and code make sure you [Python](https://www.python.org/downloads/) installed. 
 
