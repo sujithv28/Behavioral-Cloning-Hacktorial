@@ -28,7 +28,7 @@ prev_image_array = None
 def process_image(image):
     image = np.array(image, np.float32)
     image = image[35:135, :]
-    image = scipy.misc.imresize(image, (64,64))
+    image = scipy.misc.imresize(image, (66,200))
     return image
 
 @sio.on('telemetry')
