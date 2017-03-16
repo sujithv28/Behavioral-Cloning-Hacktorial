@@ -9,9 +9,9 @@ import tensorflow as tf
 tf.python.control_flow_ops = tf
 
 from keras.models import Sequential
-from keras.layers import Activation, Dense, Dropout, ELU, Flatten, MaxPooling2D, Lambda
+from keras.layers import Activation, Dense, Dropout, ELU, Flatten, Lambda
 from keras.optimizers import Adam
-from keras.layers.convolutional import Convolution2D
+from keras.layers.convolutional import Convolution2D, MaxPooling2D
 from PIL import Image
 from sklearn.model_selection import train_test_split
 
@@ -150,19 +150,19 @@ learning_rate = 1e-4
 def create_model():
 	model = Sequential()
 	model.add(Lambda(lambda x: x / 127.5 - 1.0, input_shape=(66, 200, 3)))
-	model.add(Convolution2D(24, (5, 5), border_mode='same', subsample=(2, 2)))
+	model.add(Convolution2D(24, 5, 5, border_mode='same', subsample=(2, 2)))
 	model.add(Activation(activation_relu))
 	model.add(MaxPooling2D(pool_size=(2, 2), strides=(1, 1)))
-	model.add(Convolution2D(36, (5, 5), border_mode='same', subsample=(2, 2)))
+	model.add(Convolution2D(36, 5, 5, border_mode='same', subsample=(2, 2)))
 	model.add(Activation(activation_relu))
 	model.add(MaxPooling2D(pool_size=(2, 2), strides=(1, 1)))
-	model.add(Convolution2D(48, (5, 5), border_mode='same', subsample=(2, 2)))
+	model.add(Convolution2D(48, 5, 5, border_mode='same', subsample=(2, 2)))
 	model.add(Activation(activation_relu))
 	model.add(MaxPooling2D(pool_size=(2, 2), strides=(1, 1)))
-	model.add(Convolution2D(64, (3, 3), border_mode='same', subsample=(1, 1)))
+	model.add(Convolution2D(64, 3, 3, border_mode='same', subsample=(1, 1)))
 	model.add(Activation(activation_relu))
 	model.add(MaxPooling2D(pool_size=(2, 2), strides=(1, 1)))
-	model.add(Convolution2D(64, (3, 3), border_mode='same', subsample=(1, 1)))
+	model.add(Convolution2D(64, 3, 3, border_mode='same', subsample=(1, 1)))
 	model.add(Activation(activation_relu))
 	model.add(MaxPooling2D(pool_size=(2, 2), strides=(1, 1)))
 	model.add(Flatten())
