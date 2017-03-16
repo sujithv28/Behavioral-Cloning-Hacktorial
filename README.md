@@ -25,6 +25,19 @@ Install all the python dependencies:
 ```
 pip install -r requirements.txt
 ```
+Set Keras to use Tensorflow as backend:
+```
+nano ~/.keras/keras.json
+```
+Change your values to look something like:
+```
+{
+    "image_dim_ordering": "tf", 
+    "epsilon": 1e-07, 
+    "floatx": "float32", 
+    "backend": "tensorflow"
+}
+```
 Download Udacity's training data and extract it to the main directory by running in the directory.
 ```
 wget https://www.dropbox.com/s/3cwc2atg1qorzg4/data.zip?dl=0
