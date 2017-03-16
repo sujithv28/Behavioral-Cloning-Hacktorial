@@ -8,6 +8,7 @@ import numpy as np
 import socketio
 import eventlet
 import eventlet.wsgi
+import scipy.misc
 from io import BytesIO
 from flask import Flask, render_template
 from PIL import Image
@@ -53,7 +54,7 @@ def telemetry(sid, data):
     # Counteract for model's bias towards 0 values
     steering_angle = steering_angle * 1.2
     # The driving model currently just outputs a constant throttle. Feel free to edit this.
-    throttle = 0.1
+    throttle = 0.2
 
     print('Steering Angle: %f, \t Throttle: %f' % (steering_angle, throttle))
     send_control(steering_angle, throttle)
