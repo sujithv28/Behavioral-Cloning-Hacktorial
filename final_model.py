@@ -113,8 +113,8 @@ def batch_generator(images, steering_angles, batch_size=64, augment_data=True):
                 batch_steering_angles.append(tint_angle)
 
                 # Jitter the center image to make it seem like different position on road.
-                jitter_image, jitter_angle = jitter_image(images.iloc[i]['Center Image'], center_angle)
-                batch_images.append(jitter_image)
+                jittered_image, jitter_angle = jitter_image(images.iloc[i]['Center Image'], center_angle)
+                batch_images.append(jittered_image)
                 batch_steering_angles.append(jitter_angle)
 
                 # Load the left image and add steering constant to compensate for shift.
