@@ -9,9 +9,9 @@ import tensorflow as tf
 tf.python.control_flow_ops = tf
 
 from keras.models import Sequential
-from keras.layers import Activation, Dense, Dropout, ELU, Flatten, MaxPooling2D, Lambda
+from keras.layers import Activation, Dense, Dropout, ELU, Flatten, Lambda
 from keras.optimizers import Adam
-from keras.layers.convolutional import Convolution2D
+from keras.layers.convolutional import Convolution2D, MaxPooling2D
 from PIL import Image
 from sklearn.model_selection import train_test_split
 
