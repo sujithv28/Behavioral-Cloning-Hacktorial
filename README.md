@@ -16,7 +16,7 @@ For those new to deep learning or computer vision, here are some good blog posts
 ## Installation
 To run the models and code make sure you [Python](https://www.python.org/downloads/) installed. 
 
-Also make sure you have OpenCV installed either through pip or homebrew. You can check if this works by running and making sure nothing complains:
+Also make sure you have OpenCV installed (`brew install opencv3 --with-contrib --with-python3 --HEAD`) either through pip or homebrew. You can check if this works by running and making sure nothing complains:
 ```
 python
 import cv2
