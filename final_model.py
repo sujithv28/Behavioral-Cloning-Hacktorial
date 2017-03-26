@@ -22,6 +22,29 @@ DATA_FILE = 'driving_log.csv'
 columns = ['Center Image', 'Left Image', 'Right Image', 'Steering Angle', 'Throttle', 'Break', 'Speed']
 data = pd.read_csv(DATA_FILE, names=columns, header=1)
 
+num_bins = 23
+avg_samples_per_bin = len(data['Steering Angle'])/num_bins
+hist, bins = np.histogram(data['Steering Angle'], num_bins)
+width = 0.7 * (bins[1] - bins[0])
+center = (bins[:-1] + bins[1:]) * 0.5
+
+keep_probs = []
+target = avg_samples_per_bin * .3
+for i in range(num_bins):
+    if hist[i] < target:
+        keep_probs.append(1.)
+    else:
+        keep_probs.append(1./(hist[i]/target))
+
+remove_list = []
+for i in range(len(data['Steering Angle'])):
+    for j in range(num_bins):
+        if data['Steering Angle'][i] > bins[j] and data['Steering Angle'][i] <= bins[j+1]:
+            # delete from X and y with probability 1 - keep_probs[j]
+            if np.random.rand() > keep_probs[j]:
+                remove_list.append(i)
+data.drop(data.index[remove_list], inplace=True)
+
 images = data[['Center Image', 'Left Image', 'Right Image']]
 angles = data['Steering Angle']
 
