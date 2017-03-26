@@ -41,7 +41,8 @@ Change your values to look something like:
 Download Udacity's training data and extract it to the main directory by running in the directory.
 ```
 wget https://www.dropbox.com/s/3cwc2atg1qorzg4/data.zip?dl=0
-unzip -a data.zip
+unzip -a data.zip?dl=0
+rm data.zip
 ```
 
 Download the simulator [here](https://github.com/udacity/self-driving-car-sim).
