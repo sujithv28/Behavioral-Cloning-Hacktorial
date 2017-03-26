@@ -201,7 +201,7 @@ def create_model():
 	model.compile(optimizer=Adam(learning_rate), loss="mse", )
 	return model
 
-nb_epoch = 25
+nb_epoch = 15
 
 samples_per_epoch = 4 * len(images_train)
 generator_train = batch_generator(images_train, angles_train)
