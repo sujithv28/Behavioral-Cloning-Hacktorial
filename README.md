@@ -21,6 +21,8 @@ Also make sure you have OpenCV installed (`brew install opencv3 --with-contrib -
 python
 import cv2
 ```
+Install Tensorflow following the instructions [here](https://www.tensorflow.org/install/).
+
 Install all the python dependencies:
 ```
 pip install -r requirements.txt
