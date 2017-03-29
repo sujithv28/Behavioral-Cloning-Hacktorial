@@ -18,6 +18,7 @@ from sklearn.model_selection import train_test_split
 # Location of the training data
 DATA_FILE = 'driving_log.csv'
 
+print('\n[INFO] Loading Data:')
 # Load the training data into a pandas dataframe.
 columns = ['Center Image', 'Left Image', 'Right Image', 'Steering Angle', 'Throttle', 'Break', 'Speed']
 data = pd.read_csv(DATA_FILE, names=columns, header=1)
@@ -28,6 +29,7 @@ hist, bins = np.histogram(data['Steering Angle'], num_bins)
 width = 0.7 * (bins[1] - bins[0])
 center = (bins[:-1] + bins[1:]) * 0.5
 
+print('\n[INFO] Dropping Random Straight Steering Angles:')
 keep_probs = []
 target = avg_samples_per_bin * .3
 for i in range(num_bins):
@@ -48,9 +50,11 @@ data.drop(data.index[remove_list], inplace=True)
 images = data[['Center Image', 'Left Image', 'Right Image']]
 angles = data['Steering Angle']
 
+print('\n[INFO] Creating Training and Testing Data:')
 images_train, images_validation, angles_train, angles_validation = train_test_split(
     images, angles, test_size=0.15, random_state=42)
 
+print('\n[INFO] Preprocessing Images and Augmenting Data:')
 def load_image_and_preprocess(path, flip_image=False, tint_image=False):
     # Open image from disk and flip it if generating data.
     image = Image.open(path.strip())
@@ -99,6 +103,7 @@ def jitter_image(path, steering):
 
     return image, steering
 
+print('\n[INFO] Batch Generator:')
 def batch_generator(images, steering_angles, batch_size=64, augment_data=True):
     # Create an array of sample indices.
     batch_images = []
@@ -209,7 +214,9 @@ generator_train = batch_generator(images_train, angles_train)
 nb_val_samples = len(images_validation)
 generator_validation = batch_generator(images_validation, angles_validation, augment_data=False)
 
+print('\n[INFO] Creating Model:')
 model = create_model()
+print('\n[INFO] Training Model:')
 model.fit_generator(generator_train,
                               samples_per_epoch=samples_per_epoch,
                               nb_epoch=nb_epoch,
