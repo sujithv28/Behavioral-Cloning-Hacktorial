@@ -203,7 +203,7 @@ def create_model():
 
 nb_epoch = 15
 
-samples_per_epoch = 5 * len(images_train)
+samples_per_epoch = 6 * len(images_train)
 generator_train = batch_generator(images_train, angles_train)
 
 nb_val_samples = len(images_validation)
