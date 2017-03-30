@@ -41,6 +41,9 @@ pip install -r requirements.txt
 ```
 Set Keras to use Tensorflow as backend:
 ```
+python
+import keras
+quit()
 nano ~/.keras/keras.json
 ```
 Change your values to look something like:
