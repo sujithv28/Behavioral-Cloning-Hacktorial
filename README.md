@@ -18,7 +18,12 @@ For those new to deep learning or computer vision, here are some good blog posts
 ## Installation
 To run the models and code make sure you [Python](https://www.python.org/downloads/) installed. 
 
-Install Tensorflow following the instructions [here](https://www.tensorflow.org/install/).
+Make sure you have conda installed to make this setup easier and all the setup is done in the conda env. Install Tensorflow following the instructions [here](https://www.tensorflow.org/install/) in a new Conda environment.
+```
+conda create -n hacktorial python=2.7
+source activate hacktorial
+conda install -c conda-forge tensorflow
+```
 
 Install all the python dependencies:
 ```
@@ -68,7 +73,7 @@ python model.py
 ```
 
 ## Test Model on Simulator
-To run your trained model on the simulator, open up the simulator application and start an autonomous session on either track. Then run
+To run your trained model on the simulator, open up the simulator application and start an autonomous session on either track. Then run in the env
 ```
 python drive.py model.json
 ```
