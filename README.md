@@ -1,7 +1,7 @@
 # Behavioral-Cloning-Hacktorial-Files
 All the files needed for the Terrapin Hackers Hacktorial on Behavioral Cloning (End to End Learning) for Self Driving Cars. 
 
-The presentation is available to view [here](goo.gl/XtIBNg).
+The presentation is available to view [here](http://goo.gl/XtIBNg).
 
 The [model.py](/model.py) is a template for the hacktorial and the final code is available to view in [final_model.py](/final_model.py). [drive.py](/drive.py) contains the code needed to connect your model and the simulator.
 
