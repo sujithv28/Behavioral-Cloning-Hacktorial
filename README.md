@@ -16,8 +16,7 @@ For those new to deep learning or computer vision, here are some good blog posts
 - Great resource for computer vision tutorials that are easy to follow in Python [here](http://www.pyimagesearch.com/).
 
 ## Installation
-To run the models and code make sure you [Python](https://www.python.org/downloads/) installed.\
-**All the setup should be done in the conda env as well as running the model**.
+To run the models and code make sure [Python](https://www.python.org/downloads/) installed. **All the setup should be done in the conda env as well as running the model**.
 
 Clone the repo onto your local machine and cd into the directory.
 ```
