@@ -18,10 +18,21 @@ For those new to deep learning or computer vision, here are some good blog posts
 ## Installation
 To run the models and code make sure you [Python](https://www.python.org/downloads/) installed. 
 
-Make sure you have conda installed to make this setup easier and all the setup is done in the conda env. Install Tensorflow following the instructions [here](https://www.tensorflow.org/install/) in a new Conda environment.
+Clone the repo onto your local machine and cd into the directory.
+```
+git clone https://github.com/sujithv28/Behavioral-Cloning-Hacktorial.git
+cd Behavioral-Cloning-Hacktorial
+```
+
+Make sure you have conda installed to make this setup easier. Create a new conda environment for this hacktorial in the repo.
 ```
 conda create -n hacktorial python=2.7
 source activate hacktorial
+```
+
+**All the setup should be done in the conda env as well as running the model**.
+Install Tensorflow following the instructions [here](https://www.tensorflow.org/install/).
+```
 conda install -c conda-forge tensorflow
 ```
 
