@@ -15,7 +15,8 @@ from PIL import Image
 from PIL import ImageOps
 
 from keras.models import model_from_json
-from keras.preprocessing.image import ImageDataGenerator, array_to_img, img_to_array
+from keras.preprocessing.image import ImageDataGenerator
+from keras.preprocessing.image import array_to_img, img_to_array
 
 # Fix error with Keras and TensorFlow
 import tensorflow as tf
@@ -26,11 +27,13 @@ app = Flask(__name__)
 model = None
 prev_image_array = None
 
+
 def process_image(image):
     image = np.array(image, np.float32)
     image = image[35:135, :]
-    image = scipy.misc.imresize(image, (66,200))
+    image = scipy.misc.imresize(image, (66, 200))
     return image
+
 
 @sio.on('telemetry')
 def telemetry(sid, data):
@@ -50,11 +53,13 @@ def telemetry(sid, data):
     image_array = process_image(image_array)
     transformed_image_array = image_array[None, :, :, :]
 
-    steering_angle = float(model.predict(transformed_image_array, batch_size=1))
+    steering_angle = float(model.predict(
+        transformed_image_array, batch_size=1))
     # Counteract for model's bias towards 0 values
-    steering_angle = steering_angle * 1.2
-    # The driving model currently just outputs a constant throttle. Feel free to edit this.
-    throttle = 0.2
+    steering_angle = steering_angle * 1
+    # The driving model currently just outputs a constant throttle. Feel free
+    # to edit this.
+    throttle = 0.25
     if float(speed) < 10:
         throttle = 1
 
@@ -70,15 +75,15 @@ def connect(sid, environ):
 
 def send_control(steering_angle, throttle):
     sio.emit("steer", data={
-    'steering_angle': steering_angle.__str__(),
-    'throttle': throttle.__str__()
+        'steering_angle': steering_angle.__str__(),
+        'throttle': throttle.__str__()
     }, skip_sid=True)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Remote Driving')
     parser.add_argument('model', type=str,
-    help='Path to model definition json. Model weights should be on the same path.')
+                        help='Path to model definition json. Model weights should be on the same path.')
     args = parser.parse_args()
     with open(args.model, 'r') as jfile:
         model = model_from_json(json.load(jfile))
