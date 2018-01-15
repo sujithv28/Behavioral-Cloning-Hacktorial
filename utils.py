@@ -62,6 +62,20 @@ def load_data(file_name, columns):
     return images, angles
 
 
+def resize_crop(img):
+    """
+    Crops the image to focus only on road and then resizes it.
+
+    :param img: Image to crop and resize.
+
+    :return: A cropped image.
+    """
+    img = np.array(img, np.float32)
+    img = img[35:135, :]
+    img = scipy.misc.imresize(img, (66, 200))
+    return img
+
+
 def jitter_image(path, steering):
     """
     Open image from disk and jitters it and modifies new angle.
@@ -81,42 +95,40 @@ def jitter_image(path, steering):
     transMat = np.float32([[1, 0, transX], [0, 1, transY]])
     steering = steering + transX / transRange * 2 * valPixels
     img = cv2.warpAffine(img, transMat, (cols, rows))
-
-    # Crop and resize image to focus only on the road.
-    img = np.array(img, np.float32)
-    img = img[35:135, :]
-    img = scipy.misc.imresize(img, (66, 200))
-    return img, steering
+    return resize_crop(img), steering
 
 
-def load_image_and_preprocess(path, flip=False, tint=False):
+def flip_image(path):
     """
-    Open image from disk and does preprocessing it needed.
+    Flips the image.
 
-    :param path: Path of image.
-    :param flip: If image should be flipped.
-    :param tint: If image should be tinted.
+    :param path: Path of image to flip.
 
-    :return: Image of car.
+    :return: A flipped image.
     """
     img = Image.open(path.strip())
+    img = img.transpose(Image.FLIP_LEFT_RIGHT)
+    return resize_crop(img)
 
-    if tint:
-        img = cv2.imread(path.strip())
-        img = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
-        img = np.array(img, dtype=np.float64)
-        random_bright = .5 + np.random.uniform()
-        img[:, :, 2] = img[:, :, 2] * random_bright
-        img[:, :, 2][img[:, :, 2] > 255] = 255
-        img = np.array(img, dtype=np.uint8)
-        img = cv2.cvtColor(img, cv2.COLOR_HSV2RGB)
 
-    if flip:
-        img = img.transpose(Image.FLIP_LEFT_RIGHT)
+def tint_image(path):
+    """
+    Applies random tint to image to simulate night time.
 
-    # Crop and resize image to focus only on the road.
-    img = np.array(img, np.float32)
-    img = img[35:135, :]
-    img = scipy.misc.imresize(img, (66, 200))
-    return img
+    :param path: Path of image to flip.
 
+    :return: A tinted image.
+    """
+    img = cv2.imread(path.strip())
+    img = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
+    img = np.array(img, dtype=np.float64)
+    random_bright = .5 + np.random.uniform()
+    img[:, :, 2] = img[:, :, 2] * random_bright
+    img[:, :, 2][img[:, :, 2] > 255] = 255
+    img = np.array(img, dtype=np.uint8)
+    img = cv2.cvtColor(img, cv2.COLOR_HSV2RGB)
+    return resize_crop(img)
+
+def load_image(path):
+    img = Image.open(path.strip())
+    return resize_crop(img)

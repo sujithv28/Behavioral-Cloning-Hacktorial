@@ -44,25 +44,21 @@ def batch_generator(images, angles, augment_data=True, batch_size=64):
             right_path = images.iloc[i]['Right Image']
             angle = float(angles.iloc[i])
 
-            center_image = utils.load_image_and_preprocess(center_path)
+            center_image = utils.load_image(center_path)
             batch_images.append(center_image)
             batch_angles.append(angle)
 
             sample_count += 1
 
-            # Add augmentation if needed. We do this because our model only runs on
-            # our center camera feed and we dont want to modify anything other than
-            # the cropping and normalizing for our validation dataset since this should
-            # work on raw data.
             if augment_data:
                 # Image (2) -> Flip the image and invert angle respectively.
-                flipped_image = utils.load_image_and_preprocess(center_path, flip=True, tint=False)
+                flipped_image = utils.flip_image(center_path)
                 flipped_angle = -1.0 * angle
                 batch_images.append(flipped_image)
                 batch_angles.append(flipped_angle)
 
                 # Image (3) -> Tint the center image to random brightness.
-                tint_image = utils.load_image_and_preprocess(center_path, flip=False, tint=True)
+                tint_image = utils.tint_image(center_path)
                 tint_angle = angle
                 batch_images.append(tint_image)
                 batch_angles.append(tint_angle)
@@ -75,27 +71,21 @@ def batch_generator(images, angles, augment_data=True, batch_size=64):
 
                 # Image (5) -> Load the left image and add steering constant to
                 # compensate.
-                left_image = utils.load_image_and_preprocess(left_path)
+                left_image = utils.load_image(left_path)
                 left_angle = min(1.0, angle + SIDE_STEERING_CONSTANT)
                 batch_images.append(left_image)
                 batch_angles.append(left_angle)
 
                 # Image (6) -> Load the right image and subtract steering
                 # constant to compensate.
-                right_image = utils.load_image_and_preprocess(right_path)
+                right_image = utils.load_image(right_path)
                 right_angle = max(-1.0, angle - SIDE_STEERING_CONSTANT)
                 batch_images.append(right_image)
                 batch_angles.append(right_angle)
 
-            # If we have processed batch_size number samples or this is the last batch
-            # of the epoch, then we submit the batch. Since we augment the data there is a chance
-            # we have more than the number of batch_size elements in each
-            # batch.
-            if ((sample_count %
-                 batch_size == 0) or (sample_count %
-                                      len(images) == 0)):
+            if ((sample_count % batch_size == 0) or (sample_count % len(images) == 0)):
                 yield np.array(batch_images), np.array(batch_angles)
-                # Reset batch
+                # Reset batch/
                 batch_images = []
                 batch_angles = []
 
