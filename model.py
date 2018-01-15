@@ -56,23 +56,20 @@ def batch_generator(images, angles, augment_data=True, batch_size=64):
             # work on raw data.
             if augment_data:
                 # Image (2) -> Flip the image and invert angle respectively.
-                flipped_image = utils.load_image_and_preprocess(
-                    center_path, flip=True, tint=False)
+                flipped_image = utils.load_image_and_preprocess(center_path, flip=True, tint=False)
                 flipped_angle = -1.0 * angle
                 batch_images.append(flipped_image)
                 batch_angles.append(flipped_angle)
 
                 # Image (3) -> Tint the center image to random brightness.
-                tint_image = utils.load_image_and_preprocess(
-                    center_path, flip=False, tint=True)
+                tint_image = utils.load_image_and_preprocess(center_path, flip=False, tint=True)
                 tint_angle = angle
                 batch_images.append(tint_image)
                 batch_angles.append(tint_angle)
 
                 # Image (4) -> Jitter the center image to make it seem like
                 # different position on the road.
-                jittered_image, jitter_angle = utils.jitter_image(
-                    center_path, angle)
+                jittered_image, jitter_angle = utils.jitter_image(center_path, angle)
                 batch_images.append(jittered_image)
                 batch_angles.append(jitter_angle)
 
@@ -172,10 +169,7 @@ if __name__ == '__main__':
         'Speed']
 
     print('[INFO] Loading Data.')
-    data = utils.load_data(file_name, columns)
-    data = utils.normalize_dataframe(data, num_bins=NUM_BINS)
-    images = data[columns[:3]]
-    angles = data[columns[3]]
+    images, angles = utils.load_data(file_name, columns)
 
     print('[INFO] Creating Training and Testing Data.')
     X_train, X_val, y_train, y_val = train_test_split(
@@ -193,7 +187,6 @@ if __name__ == '__main__':
         verbose=0,
         save_best_only=True,
         mode='auto')
-    print(model.summary())
 
     print('[INFO] Training Model.')
     model.fit_generator(

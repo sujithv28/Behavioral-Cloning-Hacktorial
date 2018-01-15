@@ -1,5 +1,5 @@
 IMG/
 driving_log.csv
 .ipynb_checkpoints/
-behavorial-cloning.pem
+*.pem
 

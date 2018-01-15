@@ -56,7 +56,10 @@ def load_data(file_name, columns):
     data = pd.read_csv(file_name, names=columns, header=0)
     data[columns[:3]] = data[columns[:3]].astype(str)
     data[columns[3:]] = data[columns[3:]].astype(float)
-    return data
+    data = normalize_dataframe(data)
+    images = data[columns[:3]]
+    angles = data[columns[3]]
+    return images, angles
 
 
 def jitter_image(path, steering):
