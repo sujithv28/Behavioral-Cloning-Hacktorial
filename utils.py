@@ -131,5 +131,12 @@ def tint_image(path):
 
 
 def load_image(path):
+    """
+    Loads an image give path.
+
+    :param path: Path of image to flip.
+
+    :return: An image.
+    """
     img = Image.open(path.strip())
     return resize_crop(img)
