@@ -2,4 +2,5 @@ IMG/
 driving_log.csv
 .ipynb_checkpoints/
 *.pem
+__pycache__/
 
