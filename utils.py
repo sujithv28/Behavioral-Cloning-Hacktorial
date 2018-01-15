@@ -129,6 +129,7 @@ def tint_image(path):
     img = cv2.cvtColor(img, cv2.COLOR_HSV2RGB)
     return resize_crop(img)
 
+
 def load_image(path):
     img = Image.open(path.strip())
     return resize_crop(img)
