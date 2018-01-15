@@ -36,12 +36,13 @@ def normalize_dataframe(data, num_bins=23):
     # Delete from X and y with probability 1 - keep_probs[j].
     remove_list = []
     for i in range(len(data['Steering Angle'])):
+        angle = data['Steering Angle'][i]
         for j in range(num_bins):
-            if data['Steering Angle'][i] > bins[j] and data['Steering Angle'][i] <= bins[j + 1]:
+            if angle > bins[j] and angle <= bins[j + 1]:
                 if np.random.rand() > keep_probs[j]:
                     remove_list.append(i)
-    data.drop(data.index[remove_list], inplace=True)
-    return data
+
+    return data.drop(data.index[remove_list], inplace=True)
 
 
 def load_data(file_name, columns):
