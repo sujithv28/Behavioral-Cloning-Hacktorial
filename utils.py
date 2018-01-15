@@ -42,7 +42,8 @@ def normalize_dataframe(data, num_bins=23):
                 if np.random.rand() > keep_probs[j]:
                     remove_list.append(i)
 
-    return data.drop(data.index[remove_list], inplace=True)
+    data.drop(data.index[remove_list], inplace=True)
+    return data
 
 
 def load_data(file_name, columns):
