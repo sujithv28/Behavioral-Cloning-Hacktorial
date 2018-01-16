@@ -6,7 +6,7 @@ import json
 import utils
 
 from keras.callbacks import ModelCheckpoint
-from keras.layers import Activation, Dense, Dropout, Flatten, Lambda, Conv2D
+from keras.layers import Activation, Dense, Dropout, Flatten, Lambda, Conv2D, BatchNormalization
 from keras.layers.convolutional import MaxPooling2D
 from keras.models import Sequential
 from keras.optimizers import Adam
@@ -106,18 +106,23 @@ def create_model(lr=1e-3, activation='relu', nb_epoch=15):
     # Convolutional layer (1)
     model.add(Conv2D(24, (5,5), padding='same', activation=activation, strides=(2,2)))
     model.add(MaxPooling2D(pool_size=(2,2), strides=(1, 1)))
+    model.add(BatchNormalization())
     # Convolutional layer (2)
     model.add(Conv2D(36, (5,5), padding='same', activation=activation, strides=(2,2)))
     model.add(MaxPooling2D(pool_size=(2,2), strides=(1, 1)))
+    model.add(BatchNormalization())
     # Convolutional layer (3)
     model.add(Conv2D(48, (5,5), padding='same', activation=activation, strides=(2,2)))
     model.add(MaxPooling2D(pool_size=(2,2), strides=(1, 1)))
+    model.add(BatchNormalization())
     # Convolutional layer (4)
     model.add(Conv2D(64, (3,3), padding='same', activation=activation, strides=(1,1)))
     model.add(MaxPooling2D(pool_size=(2,2), strides=(1, 1)))
+    model.add(BatchNormalization())
     # Convolutional layer (5)
     model.add(Conv2D(64, (3,3), padding='same', activation=activation, strides=(1,1)))
     model.add(MaxPooling2D(pool_size=(2,2), strides=(1, 1)))
+    model.add(BatchNormalization())
     # Flatten Layer
     model.add(Flatten())
     # Dense Layer (1)
